@@ -12,7 +12,23 @@ const WEATHER_URL =
 export default class Home extends Component {
   state = {
     cityId: "",
+    cityTemp: "",
+    cityName: "",
   };
+
+  componentDidMount(){
+      console.log('home mount')
+  };
+
+  componentDidUpdate(prevProps, prevState){
+      console.log('home updated')
+      
+      if (prevState.cityId !== this.state.cityId){
+        this.fetchCityWeather(this.state.cityId)
+      }
+
+  }
+
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -27,24 +43,31 @@ export default class Home extends Component {
       .then((results) => {
         const filteredResults = results.data[0];
 
-        console.log(filteredResults.Key);
-        console.log(results);
+        console.log(filteredResults);
+       this.setState({
+           cityId: filteredResults.Key,
+           cityName: filteredResults.LocalizedName,
+       })
+        
+      });
+  }
 
-        axios
-          .get(WEATHER_URL + filteredResults.Key + "?apikey=" + apiKey)
+  fetchCityWeather(cityId) {
+      axios
+          .get(WEATHER_URL + cityId + "?apikey=" + apiKey)
           .then((results) => {
             console.log(results.data.DailyForecasts[0].Temperature);
+            this.setState({
+                cityTemp: results.data.DailyForecasts[0].Temperature,
+            })
           });
-        // this.setState({
-        //     cityId:
-        // })
-      });
   }
 
   render() {
     //console.log(props.routerProps)
     console.log("home rendering");
-    console.log(this.state.city);
+    console.log(this.state.cityId);
+
     return (
       <div>
         <h1>Search For Your City's Weather</h1>
@@ -57,7 +80,10 @@ export default class Home extends Component {
           ></input>
           <button>Search</button>
         </form>
-        <City routeProps={this.props} />
+        <City
+            routeProps={this.props}
+            cityTemp={this.state.cityTemp}
+            cityName={this.state.cityName} />
       </div>
     );
   }

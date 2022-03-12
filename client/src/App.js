@@ -27,9 +27,9 @@ function App() {
           <Route
             path="/"
             component={Home}/>
-        <Route
+        {/* <Route
           path="/:city"
-          component={Home} />
+          component={Home} /> */}
       </Switch>
     </div>
     </BrowserRouter>
