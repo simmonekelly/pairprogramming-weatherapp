@@ -11,14 +11,14 @@ function App() {
     <BrowserRouter>
     <div className="App">
 
-      <Navbar />
+      {/* <Navbar /> */}
       <Switch>
           <Route
             path="/"
             component={Home}/>
-        {/* <Route
+        <Route
           path="/:city"
-          component={Home} /> */}
+          component={Home} />
       </Switch>
     </div>
     </BrowserRouter>

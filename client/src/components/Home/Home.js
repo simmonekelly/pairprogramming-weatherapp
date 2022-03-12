@@ -1,6 +1,7 @@
 import { React, Component } from "react";
 import "./Home.scss";
 import City from "../City/City";
+import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 
 let apiKey = "UcmWA5pipNdbXRVDpPVdtgA7qBuniPCb";
@@ -18,15 +19,18 @@ export default class Home extends Component {
   };
 
   componentDidMount(){
-      console.log('home mount')
+      //console.log('home mount')
   };
 
   componentDidUpdate(prevProps, prevState){
-      console.log('home updated')
+      //console.log('home updated')
+
+      if(this.state.cityId){
       
-      if (prevState.cityId !== this.state.cityId){
-        this.fetchCityWeather(this.state.cityId)
-      }
+        if (prevState.cityId !== this.state.cityId){
+            this.fetchCityWeather(this.state.cityId)
+        }
+    }
 
   }
 
@@ -64,23 +68,29 @@ export default class Home extends Component {
           });
   }
 
+  logoClick = () => {
+    this.setState({
+        cityId: "",
+        cityTemp: "",
+        cityName: "",
+    });
+  };
+
   render() {
-    //console.log(props.routerProps)
-    console.log("home rendering");
-    console.log(this.state.cityId);
 
     return (
       <div>
+        <Navbar 
+            logoClick={this.logoClick}/>
         <h1>Search For Your City's Weather</h1>
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-          <input
-            type="text"
-            name="city"
-            id="city"
-            placeholder="Search your city"
-          ></input>
-          <button>Search</button>
-        </form>
+            <form onSubmit={(e) => this.handleSubmit(e)}>
+                <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="Search your city"></input>
+              <button >Search</button>
+            </form>
         <City
             routeProps={this.props}
             cityTemp={this.state.cityTemp}

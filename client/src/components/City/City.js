@@ -3,7 +3,6 @@ import "./City.scss"
 
 export default class City extends Component {
     render() {
-        console.log(this.props)
 
         if (!this.props.cityTemp) {
             return null
@@ -14,11 +13,11 @@ export default class City extends Component {
                 <div className="city__tempreture">
                 <div >
                     <h2>High Temp For Today</h2>
-                    <p>{this.props.cityTemp.Maximum.Value}</p>
+                    <p>{this.props.cityTemp.Maximum.Value} {this.props.cityTemp.Maximum.Unit}</p>
                 </div>
                 <div>
                     <h2>Low Temp For Today</h2>
-                    <p>{this.props.cityTemp.Minimum.Value}</p>
+                    <p>{this.props.cityTemp.Minimum.Value} {this.props.cityTemp.Minimum.Unit}</p>
                 </div>
                     
                 </div>

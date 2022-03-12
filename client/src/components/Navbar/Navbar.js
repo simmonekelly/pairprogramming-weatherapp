@@ -1,11 +1,10 @@
 import React from 'react';
 import './Navbar.scss';
-import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar(props) {
     return (
         <div>
-            <h2>Weather App</h2>
+            <h2 onClick={ () => props.logoClick()}>Weather App</h2>
         </div>
     )
 }
