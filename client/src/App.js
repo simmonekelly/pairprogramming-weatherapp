@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './components/Home/Home';
+import City from './components/City';
+import Navbar from './components/Navbar/Navbar';
+import React from 'react';
+
+// function handleSubmit(e) {
+//   e.preventDefault();
+//   console.log(e)
+//   console.log(e.target.city.value)
+// };
+
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+//   console.log(e)
+//   console.log(e.target.city.value)
+// }
+
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Switch>
+          <Route
+            path="/"
+            component={Home}/>
+        <Route
+          path="/:city"
+          component={Home} />
+      </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 
