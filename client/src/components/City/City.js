@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "./City.scss"
 
 export default class City extends Component {
     render() {
@@ -8,9 +9,10 @@ export default class City extends Component {
             return null
         }
         return (
-            <div>
+            <div className="city">
                 <h1>Weather for {this.props.cityName}</h1>
-                <div>
+                <div className="city__tempreture">
+                <div >
                     <h2>High Temp For Today</h2>
                     <p>{this.props.cityTemp.Maximum.Value}</p>
                 </div>
@@ -18,6 +20,9 @@ export default class City extends Component {
                     <h2>Low Temp For Today</h2>
                     <p>{this.props.cityTemp.Minimum.Value}</p>
                 </div>
+                    
+                </div>
+                
                 
             </div>
         )

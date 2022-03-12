@@ -1,7 +1,8 @@
 import { React, Component } from "react";
 import "./Home.scss";
-import City from "../City";
+import City from "../City/City";
 import axios from "axios";
+
 let apiKey = "UcmWA5pipNdbXRVDpPVdtgA7qBuniPCb";
 const SEARCH_URL =
   "http://dataservice.accuweather.com/locations/v1/cities/search";
